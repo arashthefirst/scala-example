@@ -28,7 +28,7 @@ object Functions extends App {
 
   /*
   the following code will be compiled to
-  private final Function2<Integer,Integer,Integer> add4 = (a,b) -> a + b
+  private final Function2<Integer,Integer,Integer> add5 = (a,b) -> a + b
 
    */
   val add5: (Int, Int) => Int = (a, b) => a + b

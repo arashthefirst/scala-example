@@ -12,7 +12,7 @@ object UpperAndLowerBound extends App {
 
   class D extends C
 
-  def testBounds[T >: C <: B](t: T, f: T => String): T = { // means type T is D's super class and B's subclass
+  def testBounds[T >: C <: B](t: T, f: T => String): T = { // means type T is C's super class and B's subclass (inclusive)
     println(t)
     t
   }

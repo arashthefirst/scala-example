@@ -35,9 +35,18 @@ object Functions extends App {
   val add5: (Int, Int) => Int = (a, b) => a + b
   val add6 = (a: Int, b: Int) => a + b
 
+  val add7: (Int, Int) => Int = new Function2[Int, Int, Int] {
+    override def apply(v1: Int, v2: Int): Int = v1 + v2
+  }
 
+  val add8: Function2[Int, Int, Int] = new Function2[Int, Int, Int] {
+    override def apply(v1: Int, v2: Int): Int = v1 + v2
+  }
 
-  val adds = List[(Int, Int) => Int](add1, add2, add3, add4, add5, add6)
+  val add9: Function2[Int, Int, Int] = (a, b) => a + b
+
+  val adds = List[(Int, Int) => Int](add1, add2, add3, add4, add5, add6, add7, add8, add9)
   adds.map(_ (5, 5)).foreach(println)
+
 
 }

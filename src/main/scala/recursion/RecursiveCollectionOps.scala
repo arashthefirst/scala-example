@@ -47,6 +47,7 @@ object RecursiveCollectionOps extends App {
       case Nil => acc
       case x :: xs => loop(xs, x +: acc)
     }
+
     loop()
   }
 
@@ -57,6 +58,27 @@ object RecursiveCollectionOps extends App {
       case Nil => acc
       case x :: xs => loop(xs, f(x, acc))
     }
+
+    loop()
+  }
+
+  def listInc(lst: List[Int]): List[Int] = {
+    @tailrec
+    def loop(items: List[Int] = lst, acc: List[Int] = Nil): List[Int] = items match {
+      case Nil => acc
+      case x :: xs => loop(xs, acc :+ x + 1)
+    }
+
+    loop()
+  }
+
+  def map[A, B](lst: List[A])(f: A => B): List[B] = {
+    @tailrec
+    def loop(items: List[A] = lst, acc: List[B] = Nil): List[B] = items match {
+      case Nil => acc
+      case x :: xs => loop(xs, acc :+ f(x))
+    }
+
     loop()
   }
 
@@ -78,5 +100,7 @@ object RecursiveCollectionOps extends App {
   println(sum3(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)))
   println(product(List(1, 2, 3, 4)))
   println(size(List(1, 2, 3, 4, 5, 6, 7)))
-
+  println(foldLeft(List[Int](1, 2, 4, 5))(List(1, 4, 5, 6))(_ :: _))
+  println(listInc(List(1, 2, 3, 4, 5, 6)))
+  println(map(List(1, 2, 3, 4, 5, 6))(_ + 1))
 }

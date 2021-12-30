@@ -29,7 +29,7 @@ object Functions extends App {
   /*
   the following code will be compiled to
   private static Function2<Integer,Integer,Integer> add5 = (a,b) -> a + b
-  same for add6, and then there is a method that return add5 and add6
+  same for add6, and then in the compiled code there is a method that return add5 and add6
 
    */
   val add5: (Int, Int) => Int = (a, b) => a + b

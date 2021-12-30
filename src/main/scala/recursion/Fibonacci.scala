@@ -1,8 +1,10 @@
 package recursion
 
+import scala.annotation.tailrec
+
+//tail recursion vs conventional recursion
 object Fibonacci extends App{
 
-  import scala.annotation.tailrec
 
   def fibonacci(n: Int): Long = {
     @tailrec

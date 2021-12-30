@@ -2,6 +2,7 @@ package recursion
 
 import scala.annotation.tailrec
 
+//tail recursion vs conventional recursion
 object Factorial extends App {
 
   def factorial(n: Int): Long = {

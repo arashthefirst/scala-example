@@ -53,11 +53,11 @@ object RecursiveCollectionOps extends App {
 
   def foldLeft[A, B](z: B)(list: List[A])(f: (A, B) => B): B = {
     @tailrec
-    def loop(itms: List[A], acc: B = z): B = itms match {
+    def loop(items: List[A] = list, acc: B = z): B = items match {
       case Nil => acc
       case x :: xs => loop(xs, f(x, acc))
     }
-    loop(list)
+    loop()
   }
 
 

@@ -2,11 +2,11 @@ package typesys
 
 object TypeAlias extends App {
 
-  // type alias
   class MyClass {
     override def toString: String = s"(${getClass.getSimpleName})"
   }
 
+  // type alias
   type M = MyClass
   val m = new M
 

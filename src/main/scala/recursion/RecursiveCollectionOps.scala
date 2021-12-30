@@ -42,16 +42,30 @@ object RecursiveCollectionOps extends App {
   }
 
   def reverse[T](lst: List[T]): List[T] = {
-
     @tailrec
     def loop(items: List[T] = lst, acc: List[T] = Nil): List[T] = items match {
       case Nil => acc
       case x :: xs => loop(xs, x +: acc)
     }
-
     loop()
   }
 
+
+  def foldLeft[A, B](z: B)(list: List[A])(f: (A, B) => B): B = {
+    @tailrec
+    def loop(itms: List[A], acc: B = z): B = itms match {
+      case Nil => acc
+      case x :: xs => loop(xs, f(x, acc))
+    }
+    loop(list)
+  }
+
+
+  def sum3(lst: List[Int]): Int = foldLeft(0)(lst)(_ + _)
+
+  def product(lst: List[Int]): Int = foldLeft(1)(lst)(_ * _)
+
+  def size[T](lst: List[T]): Int = foldLeft(0)(lst)((a, b) => 1 + b)
 
   printList(List(1, 2, 3))
   println(findFirst(List(1, 2, 3, 4), 0))
@@ -60,4 +74,9 @@ object RecursiveCollectionOps extends App {
   //    println(sum1((1 to 1000000).toList))  stack overflow error due to high number of stack calls
   println(sum2((1 to 1000000).toList)) // tail rec version works fine
   println(reverse(List(1, 2, 3)))
+  println(foldLeft(0)(List(1, 2, 3))(_ + _))
+  println(sum3(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)))
+  println(product(List(1, 2, 3, 4)))
+  println(size(List(1, 2, 3, 4, 5, 6, 7)))
+
 }

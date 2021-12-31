@@ -1,6 +1,6 @@
 package implicits
 
-object ImplicitMethodsAndObj extends App {
+object ImplicitFunctionAndObj extends App {
 
   type Predicate = Person => Boolean
   case class Person(name: String, id: Long)

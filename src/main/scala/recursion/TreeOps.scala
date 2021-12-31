@@ -38,8 +38,23 @@ object TreeOps extends App {
     case Node(v, l, r) => Node(f(v), map(l)(f), map(r)(f))
   }
 
+  def depth[T](tree: Tree[T]): Int = {
+    val max: (Int, Int) => Int = (a, b) => if (a > b) a else b
+
+    def loop(tree: Tree[T] = tree, length: Int = 0): Int = tree match {
+      case Empty => length
+      case Node(_, Empty, Empty) => length
+      case Node(_, l, r) =>
+        val (lDepth, rDepth) = (loop(l, length + 1), loop(r, length + 1))
+        max(lDepth, rDepth)
+    }
+
+    loop()
+  }
+
   println(sum(tree))
   println(max(tree))
-  println(tree)
+  println(map(tree)(a => a + 1))
+  println(depth(tree))
 
 }

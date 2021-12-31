@@ -89,6 +89,26 @@ object RecursiveCollectionOps extends App {
 
   def size[T](lst: List[T]): Int = foldLeft(0)(lst)((a, b) => 1 + b)
 
+  def lstToString[T](lst: List[T]): List[String] = {
+    @tailrec
+    def loop(items: List[T] = lst, acc: List[String] = Nil): List[String] = items match {
+      case Nil => acc
+      case x :: xs => loop(xs, acc :+ x.toString)
+    }
+
+    loop()
+  }
+
+  def filter[T](lst: List[T])(f: T => Boolean): List[T] = {
+    @tailrec
+    def loop(items: List[T] = lst, acc: List[T] = Nil): List[T] = items match {
+      case Nil => acc
+      case x :: xs => loop(xs, if (f(x)) acc :+ x else acc)
+    }
+
+    loop()
+  }
+
   printList(List(1, 2, 3))
   println(findFirst(List(1, 2, 3, 4), 0))
   println(findFirst(List(1, 2, 3, 4), 2))
@@ -103,4 +123,6 @@ object RecursiveCollectionOps extends App {
   println(foldLeft(List[Int](1, 2, 4, 5))(List(1, 4, 5, 6))(_ :: _))
   println(listInc(List(1, 2, 3, 4, 5, 6)))
   println(map(List(1, 2, 3, 4, 5, 6))(_ + 1))
+  println(lstToString(List(1, 2, 3, 4)))
+  println(filter(List('A', 'B', 'C'))(a => a != 'B'))
 }

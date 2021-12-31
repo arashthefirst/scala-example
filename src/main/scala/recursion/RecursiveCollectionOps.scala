@@ -122,6 +122,22 @@ object RecursiveCollectionOps extends App {
     loop(lst1, lst2)
   }
 
+  def hasSubList[T](list: List[T], sub: List[T]): Boolean = {
+
+    @tailrec
+    def loop(items: List[T], compareTo: List[T], acc: Boolean): Boolean = items match {
+      case Nil => acc
+      case x :: xs => compareTo match {
+        case Nil => acc
+        case y :: ys => loop(xs, ys, if (y == x) true else false)
+      }
+    }
+
+    if (sub == Nil) true
+    else if (list.size < sub.size) false
+    else loop(list, sub, acc = false)
+  }
+
   printList(List(1, 2, 3))
   println(findFirst(List(1, 2, 3, 4), 0))
   println(findFirst(List(1, 2, 3, 4), 2))
@@ -139,4 +155,6 @@ object RecursiveCollectionOps extends App {
   println(lstToString(List(1, 2, 3, 4)))
   println(filter(List('A', 'B', 'C'))(a => a != 'B'))
   println(zip(List(1, 2, 3), List('A', 'B', 'C')))
+  println(hasSubList(List(1, 2, 3), List(1, 2)))
+
 }

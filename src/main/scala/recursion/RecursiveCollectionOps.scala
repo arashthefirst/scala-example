@@ -109,6 +109,19 @@ object RecursiveCollectionOps extends App {
     loop()
   }
 
+  def zip[A, B](lst1: List[A], lst2: List[B]): List[(A, B)] = {
+    @tailrec
+    def loop(items1: List[A], items2: List[B], acc: List[(A, B)] = Nil): List[(A, B)] = items1 match {
+      case Nil => acc
+      case x :: xs => items2 match {
+        case Nil => acc
+        case y :: ys => loop(xs, ys, acc :+ (x, y))
+      }
+    }
+
+    loop(lst1, lst2)
+  }
+
   printList(List(1, 2, 3))
   println(findFirst(List(1, 2, 3, 4), 0))
   println(findFirst(List(1, 2, 3, 4), 2))
@@ -125,4 +138,5 @@ object RecursiveCollectionOps extends App {
   println(map(List(1, 2, 3, 4, 5, 6))(_ + 1))
   println(lstToString(List(1, 2, 3, 4)))
   println(filter(List('A', 'B', 'C'))(a => a != 'B'))
+  println(zip(List(1, 2, 3), List('A', 'B', 'C')))
 }

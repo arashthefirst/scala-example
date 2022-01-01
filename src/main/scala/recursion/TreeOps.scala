@@ -18,7 +18,7 @@ object TreeOps extends App {
     case Node(v, l, r) => v + sum(l) + sum(r)
   }
 
-  def max(tree: Tree[Int]): Int = {
+  def max(tree: Tree[Int]): Option[Int] = {
 
     def loop(nodes: Tree[Int] = tree, max: Int = Int.MinValue): Int = nodes match {
       case Empty => max
@@ -28,8 +28,8 @@ object TreeOps extends App {
         if (leftMax > rightMax) leftMax else rightMax
     }
 
-    if (tree == Empty) throw new IllegalArgumentException("empty list")
-    loop()
+    if (tree == Empty) None else
+      Some(loop())
 
   }
 
@@ -54,6 +54,7 @@ object TreeOps extends App {
 
   println(sum(tree))
   println(max(tree))
+  println(max(Empty))
   println(map(tree)(a => a + 1))
   println(depth(tree))
 

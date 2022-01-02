@@ -1,4 +1,4 @@
-package recursion
+package option
 
 import java.util.NoSuchElementException
 
@@ -19,7 +19,6 @@ object OptionOps extends App {
     override def getOrElse[B >: A](v: => B): B = if (this == Non) v else get
 
     override def orElse[B >: A](v: => Opt[B]): Opt[B] = if (this == Non) v else this
-
 
 
     def get: A

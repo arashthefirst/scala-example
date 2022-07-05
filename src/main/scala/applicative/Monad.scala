@@ -36,14 +36,14 @@ object Monad extends App{
   }
 
 
-
+import lst._
 
   val first = List(1)
   val second = List(1, 2)
   val third = List(1, 2, 3)
   val fourth = List(1, 2, 3, 4)
   //functor
-  val funcRes = lst.map(fourth)(_ + 1)
+  val funcRes = map(fourth)(_ + 1)
   println(funcRes)
 
 
@@ -53,15 +53,15 @@ object Monad extends App{
 
   val appRes = first <*> functions <*> second
   println(appRes)
-  val m2Res = lst.map2(first)(second)(_ + _)
-  val m3Res = lst.map3(first)(second)(third)(_ + _ + _)
-  val m4Res = lst.map4(first)(second)(third)(fourth)(_ + _ + _ + _)
+  val m2Res = map2(first)(second)(_ + _)
+  val m3Res = map3(first)(second)(third)(_ + _ + _)
+  val m4Res = map4(first)(second)(third)(fourth)(_ + _ + _ + _)
   println(m2Res)
   println(m3Res)
   println(m4Res)
 
 
   // Monad
-  val pair = lst.flatMap(second)(i => lst.map(third)(j => (i,j)))
+  val pair = flatMap(second)(i => map(third)(j => (i,j)))
   println(pair)
 }

@@ -1,4 +1,4 @@
-package applicative
+package monad
 
 object Monad extends App{
 

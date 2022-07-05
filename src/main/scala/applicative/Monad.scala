@@ -1,6 +1,6 @@
 package applicative
 
-object Applicative extends App{
+object Monad extends App{
   trait Functor[F[_]] {
     def map[A, B]: F[A] => (A => B) => F[B]
   }

@@ -45,7 +45,9 @@ object Functions extends App {
 
   val add9: Function2[Int, Int, Int] = (a, b) => a + b
 
-  val adds = List[(Int, Int) => Int](add1, add2, add3, add4, add5, add6, add7, add8, add9)
+  val add10 : Int => Int => Int = a => b => a + b
+
+  val adds = List[(Int, Int) => Int](add1, add2, add3, add4, add5, add6, add7, add8, add9, (a,b) => add10(a)(b) )
   adds.map(_ (5, 5)).foreach(println)
 
 
